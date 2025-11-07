@@ -14,7 +14,7 @@ searchLimitTooSmallText: .string "Search Limit is too small. Program exiting.\n"
 
 searchLimitTooBigText: .string "Search Limit is too big. Program exiting.\n"
 
-numberOfPrimes: .string "number of primes: "
+numberOfPrimes: .string "Number of primes found: "
 
 done: .string "Done\n"
 
@@ -89,7 +89,18 @@ sieveOfEratosthenes:
 	primeFinderLoop:
 		lb t5, (t0) # t5 = primes[t0]
 		beqz t5, endPrimeSetterLoop # go to endPrimeSetterLoop if t5 = 0
-		# t4 = t1 * t1
+		
+		# print if hit prime 
+		li a7, 4
+		la a0, hitPrime
+		ecall
+		li a7, 1
+		add a0, t1, zero
+		ecall
+		li a7, 4
+		la a0, newline
+		ecall
+		
 		add a1, t1, zero
 		add a2, t1, zero
 		jal ra multiply
@@ -118,19 +129,6 @@ sieveOfEratosthenes:
 	printPrimesLoop:
 		lb t5, (t0) # t5 = is_prime[0]
 		beqz t5, noPrint
-		
-		
-			# print if hit prime 
-			li a7, 4
-			la a0, hitPrime
-			ecall
-			li a7, 1
-			add a0, t1, zero
-			ecall
-			li a7, 4
-			la a0, newline
-			ecall
-			
 			addi s2, s2, 1
 		noPrint:
 		addi t0, t0, 1
