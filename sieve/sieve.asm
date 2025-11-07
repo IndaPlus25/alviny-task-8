@@ -89,7 +89,6 @@ sieveOfEratosthenes:
 	primeFinderLoop:
 		lb t5, (t0) # t5 = primes[t0]
 		beqz t5, endPrimeSetterLoop # go to endPrimeSetterLoop if t5 = 0
-		bgt t1, t2, endPrimeSetterLoop
 		# t4 = t1 * t1
 		add a1, t1, zero
 		add a2, t1, zero
